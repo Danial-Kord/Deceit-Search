@@ -26,12 +26,31 @@ class Node:
 
 # Binary tree class
 class BinaryTree:
-    def __init__(self, size, max_value=100):
+    def __init__(self, size, max_value=100, number_of_lies=0):
         self.root = None
-        values = [random.randint(0, max_value) for _ in range(size)]
+        values = random.sample(range(max_value), size)
+        self.target = random.choice(values) #our target
+        self.number_of_lies = number_of_lies
+        self.question_number = 0
+        self.lie_places = random.sample(range(size.bit_length() * (2 * number_of_lies + 1)), number_of_lies)
         print(values)
         for value in values:
             self.insert(value)
+
+
+    def direction(self, node, is_right = False):
+        tell_lie = False
+        if self.question_number in self.lie_places:
+            tell_lie = True
+        self.question_number += 1
+        if node.value <= self.target:
+            if tell_lie:
+                return not (is_right is True)
+            return is_right is True
+        else:
+            if tell_lie:
+                return not (is_right is False)
+            return is_right is False
 
     # Insert value if root is None or call recursive insert
     def insert(self, value):
