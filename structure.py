@@ -32,7 +32,7 @@ class BinaryTree:
         self.target = random.choice(values) #our target
         self.number_of_lies = number_of_lies
         self.question_number = 0
-        self.lie_places = random.sample(range(size.bit_length() * (2 * number_of_lies + 1)), number_of_lies)
+
         print(values)
         for value in values:
             self.insert(value)
@@ -78,6 +78,8 @@ class BinaryTree:
 
     def _in_order_traversal(self, node):
         if node is not None:
+            if node.value == self.target:
+                self.lie_places = random.sample(range(node.depth * (2 * self.number_of_lies + 1)), self.number_of_lies)
             yield from self._in_order_traversal(node.left)
             yield node.value
             yield from self._in_order_traversal(node.right)
