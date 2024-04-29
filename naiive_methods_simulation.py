@@ -136,7 +136,7 @@ def simulate_naiive_historical_continues_case():
         writer.writerow(["Experiment Number", "Epsilon", "Number of Lies", "Mean Questions", "Std Deviation"])
 
         # Sample usage
-        epsilons = [0.001, 0.0001, 0.00001, 0.000001, 0.0000001, 0.00000001, 0.000000001]
+        epsilons = [0.01,0.001, 0.0001, 0.00001, 0.000001, 0.0000001, 0.00000001, 0.000000001]
         lie_fraction = [0, 0.1, 0.2, 0.3, 0.4, 0.5]
 
         experiment_number = 0
